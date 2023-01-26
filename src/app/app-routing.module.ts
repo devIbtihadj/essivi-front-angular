@@ -1,7 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TemplateComponent } from './template/template.component';
+import {RegisterComponent} from "./security/register/register.component";
+import { LoginComponent } from './security/login/login.component';
+import { DashboardComponent } from './essivi/dashboard/dashboard.component';
+import { SecurityGuard } from './security/security.guard';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "register/commercial", component : RegisterComponent
+  },
+  {
+    path: "login", component : LoginComponent
+  },
+  {
+    path: "", component: TemplateComponent, children: [
+      {
+        path : "dashboard", component : DashboardComponent, canActivate : [SecurityGuard]
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
