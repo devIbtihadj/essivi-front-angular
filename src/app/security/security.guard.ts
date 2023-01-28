@@ -14,7 +14,7 @@ export class SecurityGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
+      alert(this.securityService.getToken())
       if(this.securityService.getToken() != null){
         return true
       }

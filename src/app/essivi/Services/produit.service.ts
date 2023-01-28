@@ -27,7 +27,7 @@ export class ProduitService {
   }
 
   public deleteMarque(id : number) : Observable<any>{
-    return this.http.delete<any>(environment.backendHost+"/marque/"+id)
+    return this.http.delete<any>(environment.backendHost+"/marque/delete/"+id)
   }
 
   public creerType_vente(type_vente : Type_venteMoel, idMarque : number) : Observable<any>{

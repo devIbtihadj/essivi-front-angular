@@ -5,6 +5,7 @@ import {RegisterComponent} from "./security/register/register.component";
 import { LoginComponent } from './security/login/login.component';
 import { DashboardComponent } from './essivi/components/dashboard/dashboard.component';
 import { SecurityGuard } from './security/security.guard';
+import { MarqueComponent } from './essivi/components/Gestion Produits/marque/marque.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
     path: "", component: TemplateComponent, children: [
       {
         path : "dashboard", component : DashboardComponent, canActivate : [SecurityGuard]
+      },
+      {
+        path : "marques", component : MarqueComponent
       }
     ]
   }

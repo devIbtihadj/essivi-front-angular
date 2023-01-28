@@ -23,9 +23,11 @@ export class CustomHttpInterceptor implements HttpInterceptor{
 
         const myToken = this.securityService.getToken()
 
-
-        req.headers.set('x-access-token', ''+myToken)
-
+        req = req.clone({
+          setHeaders : {
+              'x-access-token' : ''+myToken
+          }
+      })
 
 
         return next.handle(req).pipe(

@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import { EssiviModule } from '../essivi/essivi.module';
 import { LayoutsModule } from '../layouts/layouts.module';
 import { TemplateRoutingModule } from './template-routing.module';
+import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import { TemplateRoutingModule } from './template-routing.module';
     EssiviModule,
     LayoutsModule,
     RouterModule,
+    NgbPaginationModule,
+    NgbModule,
     TemplateRoutingModule
   ], exports:[
     TemplateComponent

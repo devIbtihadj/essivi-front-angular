@@ -10,6 +10,8 @@ import { SecurityModule } from './security/security.module';
 import { TemplateModule } from './template/template.module';
 import { SecurityGuard } from './security/security.guard';
 import { CustomHttpInterceptor } from './http-interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,11 @@ import { CustomHttpInterceptor } from './http-interceptor';
     AppRoutingModule,
     TemplateModule,
     SecurityModule,
+    NgbModule,
+    ToastrModule.forRoot({
+      timeOut : 2500,
+      progressBar : true,
+    }),
   ],
   providers: [
     SecurityGuard,

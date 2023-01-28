@@ -33,6 +33,26 @@ export class ClientService {
     return this.http.get<any>(environment.backendHost+"client/commandes/notdelivred")
   }
 
+  public getAllClients() : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"client/get/all")
+  }
+
+  public getClient(idClient : number) : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"client/get/"+idClient)
+  }
+
+
+  public creerCommercialClient(idCommercial : number, idClient : number) : Observable<any>{
+    return this.http.post<any>(environment.backendHost+"commercial_client/idComm/"+idCommercial+"/idCli/"+idClient, null)
+  }
+
+  public getCommercial_client(id : number) : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"commercial_client/get"+id)
+  }
+
+  public changeCommercialForClient(idCommercial : number, idClient : number) : Observable<any>{
+    return this.http.put<any>(environment.backendHost+"commercial_client/change/idComm/"+idCommercial+"/idCli/"+idClient, null)
+  }
 
 
 }
