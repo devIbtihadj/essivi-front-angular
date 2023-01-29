@@ -1,0 +1,137 @@
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg bg" type="button">LISTE DES TYPES DE VEHICULES</button>
+</div>
+
+
+<ng-container>
+
+    <div class="tableUserChat">
+
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form *ngIf="listeTypesVehicules">
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-3 col-sm-auto">
+                <button class="btn btn-success" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModalAddTypeVehicule" (click)="onInitAddFG()">Ajouter un Type Vente</button>
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Libelle</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tv of listeTypesVehicules | typeVehiculeFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{tv.libelle_type}}</td>
+                    <th scope="row">
+                        <a href="#"><img src={{tv.image}} alt=""></a>
+                    </th>
+                    <td style="display: flex;">
+                        <div class="d-flex " style="justify-content : space-evenly;">
+                            <div>
+                                <button type="button" class="btn btn-info" (click)="onGetDataToUpdate(tv)" data-bs-toggle="modal" data-bs-target="#exampleModalModifyTypeVehicule">
+                                <i class="bi bi-pencil-square" data-bs-toggle="modal"  data-bs-target="#exampleModalModifyTypeVehicule"></i></button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger " style="margin-left: 15px;" (click)="onGetDelete(tv)"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeTypesVehicules.length"></ngb-pagination>
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalAddTypeVehicule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Type Véhicule | Ajout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddTypeVehiculeFormGroup">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom du Type Véhicule:</label>
+                        <input type="text" formControlName="libelle_type" class="form-control" id="recipient-name">
+                    </div>
+                    <input (change)="onFileSelected($event)" class="form-control" type="file" id="formFile" formControlName="image">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddTypeVehiculeFormGroup.valid" (click)="onSaveTypeVehicule()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--
+
+<div class="modal fade" id="exampleModalModifyTypeVehicule" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Type Véhicule | Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddTypeVehiculeFormGroup">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom du  Type Véhicule:</label>
+                        <input type="text" formControlName="libelle_TypeVehicule" class="form-control" id="recipient-name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddTypeVehiculeFormGroup.valid" (click)="onSaveModify()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
