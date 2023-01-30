@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VehiculeComponent } from './components/Gestion des vehicules/vehicule/vehicule.component';
 import { TypeVehiculeFilterPipe } from './components/Gestion des vehicules/filters/type-vehicule-filter.pipe';
+import { TypeVehiculesComponent } from './components/Gestion des vehicules/type-vehicules/type-vehicules.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { TypeVehiculeFilterPipe } from './components/Gestion des vehicules/filte
     MarqueComponent,
     MarqueFilterPipe,
     VehiculeComponent,
+    TypeVehiculesComponent,
     TypeVehiculeFilterPipe
   ],
   imports: [

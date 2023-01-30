@@ -13,20 +13,20 @@ export class VehiculeService {
   constructor(private http  : HttpClient) { }
 
 
-  public createTypeVehicule(type : Type_vehiculeModel) : Observable<any>{
-    return this.http.post<any>(environment.backendHost+"type_v/creer", type)
+  public createTypeVehicule(type : FormData) : Observable<any>{
+    return this.http.post<any>(environment.backendHost+"type_vehicule/creer?libelle_type="+type.get('libelle_type'), type)
   }
 
   public updateTypeVehicule(type : Type_vehiculeModel, id : number) : Observable<any>{
-    return this.http.put<any>(environment.backendHost+"type_v/update/"+id, type)
+    return this.http.put<any>(environment.backendHost+"type_vehicule/update/"+id, type)
   }
 
   public getAllTypeVehicule() : Observable<any>{
-    return this.http.get<any>(environment.backendHost+"type_v/get/all")
+    return this.http.get<any>(environment.backendHost+"type_vehicule/get/all")
   }
 
   public deleteTypeVehicule(id : number) : Observable<any>{
-    return this.http.delete<any>(environment.backendHost+"type_v/delete/"+id)
+    return this.http.delete<any>(environment.backendHost+"type_vehicule/delete/"+id)
   }
 
 
