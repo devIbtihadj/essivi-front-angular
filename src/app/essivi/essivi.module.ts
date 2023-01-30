@@ -9,7 +9,6 @@ import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TypeVehiculesComponent } from './components/Gestion des vehicules/type-vehicules/type-vehicules.component';
 import { VehiculeComponent } from './components/Gestion des vehicules/vehicule/vehicule.component';
 import { TypeVehiculeFilterPipe } from './components/Gestion des vehicules/filters/type-vehicule-filter.pipe';
 
@@ -20,7 +19,6 @@ import { TypeVehiculeFilterPipe } from './components/Gestion des vehicules/filte
     ProduitComponent,
     MarqueComponent,
     MarqueFilterPipe,
-    TypeVehiculesComponent,
     VehiculeComponent,
     TypeVehiculeFilterPipe
   ],
