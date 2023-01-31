@@ -31,9 +31,21 @@ export class TypeVehiculesComponent implements OnInit{
 
   ngOnInit(): void {
     this.onInitAddFG()
+    this.onInitListType()
   }
 
 
+
+  onInitListType(){
+    this.typeService.getAllTypeVehicule().subscribe({
+      next:(data)=>{
+        this.listeTypes=data.data
+        console.log("ok")
+      }, error : (err)=>{
+        console.log("err")
+      }
+    })
+  }
 
   onInitAddFG(){
     this.newAddTypeFormGroup = this.fb.group({

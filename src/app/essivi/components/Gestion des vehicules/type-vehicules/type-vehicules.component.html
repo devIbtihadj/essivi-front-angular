@@ -31,7 +31,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Marque</th>
+                    <th scope="col">Type de véhicule</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -39,6 +40,10 @@
                 <tr *ngFor="let t of listeTypes | typeVehiculeFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
                     <td>{{i+1}}</td>
                     <td>{{t.libelle_type}}</td>
+                    <th scope="row">
+                        {{t.image}}
+                        <a href="#"><img src="{{t.image}}" alt=""></a>
+                    </th>
                     <td style="display: flex;">
                         <div class="d-flex " style="justify-content : space-evenly;">
                             <div>
