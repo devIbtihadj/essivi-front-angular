@@ -42,7 +42,7 @@
                     <td>{{t.libelle_type}}</td>
                     <th scope="row">
                         {{t.image}}
-                        <a href="#"><img src="{{t.image}}" alt=""></a>
+                        <a href="#"><img [src]="t.image" alt=""></a>
                     </th>
                     <td style="display: flex;">
                         <div class="d-flex " style="justify-content : space-evenly;">
@@ -92,6 +92,7 @@
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Nom du type de véhicule:</label>
                         <input type="text" formControlName="libelle_type" class="form-control" id="recipient-name">
+                        <label for="recipient-name" class="col-form-label">Image :</label>
                         <input (change)="onSelectedFile($event)" class="form-control" type="file" id="formFile" formControlName="image">
                     </div>
                 </form>
@@ -120,12 +121,14 @@
             </div>
             <div class="modal-body">
 
-                <form [formGroup]="newAddTypeFormGroup">
+                <form [formGroup]="newAddTypeFormGroupModif">
 
                     <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
                     <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Nom de la marque:</label>
+                        <label for="recipient-name" class="col-form-label">Nom du type de véhicule:</label>
                         <input type="text" formControlName="libelle_type" class="form-control" id="recipient-name">
+                        <label for="recipient-name" class="col-form-label">Image :</label>
+                        <input (change)="onSelectedFile($event)" class="form-control" type="file" id="formFile" formControlName="image">
                     </div>
                 </form>
             </div>

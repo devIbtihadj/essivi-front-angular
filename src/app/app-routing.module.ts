@@ -7,6 +7,7 @@ import { DashboardComponent } from './essivi/components/dashboard/dashboard.comp
 import { SecurityGuard } from './security/security.guard';
 import { MarqueComponent } from './essivi/components/Gestion Produits/marque/marque.component';
 import { TypeVehiculesComponent } from './essivi/components/Gestion des vehicules/type-vehicules/type-vehicules.component';
+import { VehiculeComponent } from './essivi/components/Gestion des vehicules/vehicule/vehicule.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path : "types-vehicules", component : TypeVehiculesComponent
+      },
+      {
+        path: "vehicules", component : VehiculeComponent
       }
     ]
   }

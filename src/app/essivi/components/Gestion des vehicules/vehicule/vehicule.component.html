@@ -1,1 +1,132 @@
-<p>vehicule works!</p>
+<p>type-vehicules works!</p>
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg bg" type="button">LISTE DES Véhicules</button>
+</div>
+
+
+<ng-container>
+
+    <div class="tableUserChat">
+
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form *ngIf="listeVehicules">
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-3 col-sm-auto">
+                <button class="btn btn-success" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModalAddMarque" (click)="onInitAddFG()">Ajouter une marque</button>
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">véhicule</th>
+                    <th scope="col">Immatriculation</th>
+                    <th scope="col">Type vehicule</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let v of listeVehicules | vehiculeFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{v.immatriculation}}</td>
+                    <td>{{v.type_vehicule.libelle_type}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination *ngIf="listeVehicules" class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeVehicules.length"></ngb-pagination>
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalAddMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Véhicule | Ajout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddVehiculeFormGroup">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Immatriculation du véhicule:</label>
+                        <input type="text" formControlName="immatriculation" class="form-control" id="recipient-name">
+                        <select class="form-control " formControlName="type_vehicule_id">
+                          <option>--Votre choix--</option>
+                          <option *ngFor="let t of listeTypes " value="{{t.id}}">{{t.libelle_type}} </option>
+                      </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddVehiculeFormGroup.valid" (click)="onSaveVehicule()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalModifyMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Marque | Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddVehiculeFormGroupModif">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Immatriculation du véhicule:</label>
+                        <input type="text" formControlName="immatriculation" class="form-control" id="recipient-name">
+                        <select class="form-control " formControlName="type_vehicule_id">
+                        <option>--Votre choix--</option>
+                        <option *ngFor="let t of listeTypes " value="{{t.id}}">{{t.libelle_type}} </option>
+                    </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddVehiculeFormGroupModif.valid" (click)="onSaveModify()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>

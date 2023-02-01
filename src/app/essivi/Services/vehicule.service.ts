@@ -17,7 +17,7 @@ export class VehiculeService {
     return this.http.post<any>(environment.backendHost+"type_vehicule/creer", type)
   }
 
-  public updateTypeVehicule(type : Type_vehiculeModel, id : number) : Observable<any>{
+  public updateTypeVehicule(type : FormData, id : number) : Observable<any>{
     return this.http.put<any>(environment.backendHost+"type_vehicule/update/"+id, type)
   }
 
