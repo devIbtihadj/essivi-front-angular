@@ -30,9 +30,11 @@ export class VehiculeComponent implements OnInit{
   {}
 
   ngOnInit(): void {
-    this.onInitListVehicule()
     this.onInitListType()
     this.onInitAddFG()
+    this.onInitListVehicule()
+
+
 
   }
 
@@ -53,7 +55,7 @@ export class VehiculeComponent implements OnInit{
   }
 
   onInitListVehicule(){
-    this.vehiculeService.creerVehicule(this.newAddVehiculeFormGroup.value).subscribe({
+    this.vehiculeService.getAllVehicule().subscribe({
       next : (data)=>{
         this.listeVehicules = data.data
       }, error : (err)=>{
@@ -66,9 +68,9 @@ export class VehiculeComponent implements OnInit{
     this.vehiculeService.getAllTypeVehicule().subscribe({
       next:(data)=>{
         this.listeTypes=data.data
-        alert("ok"+data.data)
+        console.log("ok"+data.data)
       }, error : (err)=>{
-        console.log("err")
+        alert("err "+err)
       }
     })
   }
@@ -82,10 +84,13 @@ export class VehiculeComponent implements OnInit{
   }
 
   onSaveVehicule(){
-    this.vehiculeService.createTypeVehicule(this.newAddVehiculeFormGroup.value).subscribe({
+    alert(this.newAddVehiculeFormGroup.controls['type_vehicule_id'].value)
+    this.vehiculeService.creerVehicule(this.newAddVehiculeFormGroup.value).subscribe({
       next : (data)=>{
         this.listeVehicules=data.data
+        this.ngOnInit()
       }, error : (err)=>{
+        //TOASTR CETTE IMMA EXISTE DEJA
         console.log("err "+err)
       }
     })

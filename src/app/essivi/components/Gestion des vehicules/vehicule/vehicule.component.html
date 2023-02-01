@@ -79,9 +79,10 @@
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Immatriculation du véhicule:</label>
                         <input type="text" formControlName="immatriculation" class="form-control" id="recipient-name">
-                        <select class="form-control " formControlName="type_vehicule_id">
+                        <select class="form-control" formControlName="type_vehicule_id">
                           <option>--Votre choix--</option>
-                          <option *ngFor="let t of listeTypes " value="{{t.id}}">{{t.libelle_type}} </option>
+                          <option *ngFor="let t of listeTypes
+                          " value="{{t.id}}">{{t.libelle_type}} </option>
                       </select>
                     </div>
                 </form>
