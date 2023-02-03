@@ -13,7 +13,8 @@ import { VehiculeComponent } from './components/Gestion des vehicules/vehicule/v
 import { TypeVehiculeFilterPipe } from './components/Gestion des vehicules/filters/type-vehicule-filter.pipe';
 import { TypeVehiculesComponent } from './components/Gestion des vehicules/type-vehicules/type-vehicules.component';
 import { VehiculeFilterPipe } from './components/Gestion des vehicules/filters/vehicule-filter.pipe';
-
+import { ClientComponent } from './components/Gestion des clients/client/client.component';
+import { ClientFilterPipe } from './components/Gestion des clients/filters/client-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { VehiculeFilterPipe } from './components/Gestion des vehicules/filters/v
     VehiculeComponent,
     TypeVehiculesComponent,
     TypeVehiculeFilterPipe,
-    VehiculeFilterPipe
+    VehiculeFilterPipe,
+    ClientComponent,
+    ClientFilterPipe
   ],
   imports: [
     BrowserAnimationsModule,

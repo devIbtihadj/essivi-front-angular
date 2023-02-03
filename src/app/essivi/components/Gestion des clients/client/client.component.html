@@ -1,0 +1,55 @@
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg bg" type="button">LISTE DES MARQUES</button>
+</div>
+
+
+<ng-container *ngIf="listeClients">
+
+    <div class="tableUserChat">
+
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form>
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-3 col-sm-auto">
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom </th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Commercial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let l of listeClients | clientFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{l.client.nom}}</td>
+                    <td>{{l.client.prenom}}</td>
+                    <td>{{l.client.latitude}}</td>
+                    <td>{{l.commercial.nom}} {{l.commercial.prenom}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeClients.length"></ngb-pagination>
+
+
+
+
+</ng-container>
