@@ -15,6 +15,7 @@ import { TypeVehiculesComponent } from './components/Gestion des vehicules/type-
 import { VehiculeFilterPipe } from './components/Gestion des vehicules/filters/vehicule-filter.pipe';
 import { ClientComponent } from './components/Gestion des clients/client/client.component';
 import { ClientFilterPipe } from './components/Gestion des clients/filters/client-filter.pipe';
+import { ClientCarteComponent } from './components/cartes/client-carte/client-carte.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ClientFilterPipe } from './components/Gestion des clients/filters/clien
     TypeVehiculeFilterPipe,
     VehiculeFilterPipe,
     ClientComponent,
-    ClientFilterPipe
+    ClientFilterPipe,
+    ClientCarteComponent
   ],
   imports: [
     BrowserAnimationsModule,

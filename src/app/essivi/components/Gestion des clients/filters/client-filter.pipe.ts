@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ClientModel } from 'src/app/essivi/models/client.model';
 import { Commercial_ClientModel } from 'src/app/essivi/models/commercial_client.model';
 
 @Pipe({
@@ -6,14 +7,14 @@ import { Commercial_ClientModel } from 'src/app/essivi/models/commercial_client.
 })
 export class ClientFilterPipe implements PipeTransform {
 
-  transform(comm_cli: Commercial_ClientModel[], searchValue: string): Commercial_ClientModel[] {
+  transform(cli: ClientModel[], searchValue: string): ClientModel[] {
 
-    if(!comm_cli || !searchValue){
-      return comm_cli;
+    if(!cli || !searchValue){
+      return cli;
     }
 
-    return comm_cli.filter(comm_clione =>
-      comm_clione.client.nom.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
+    return cli.filter(cl_one =>
+      cl_one.nom.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
   }
 
 }

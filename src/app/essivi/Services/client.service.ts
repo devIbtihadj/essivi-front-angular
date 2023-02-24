@@ -47,7 +47,7 @@ export class ClientService {
   }
 
   public getAllCommercialsClients() : Observable<any>{
-    return this.http.get<any>(environment.backendHost+"commercial_client/get/all")
+    return this.http.get<any>(environment.backendHost+"client/get/all")
   }
 
 

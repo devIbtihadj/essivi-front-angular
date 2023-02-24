@@ -9,6 +9,7 @@ import { MarqueComponent } from './essivi/components/Gestion Produits/marque/mar
 import { TypeVehiculesComponent } from './essivi/components/Gestion des vehicules/type-vehicules/type-vehicules.component';
 import { VehiculeComponent } from './essivi/components/Gestion des vehicules/vehicule/vehicule.component';
 import { ClientComponent } from './essivi/components/Gestion des clients/client/client.component';
+import { ClientCarteComponent } from './essivi/components/cartes/client-carte/client-carte.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
       },
       {
         path: "clients", component : ClientComponent
+      },
+      {
+        path: "carte", component : ClientCarteComponent
       }
     ]
   }

@@ -36,12 +36,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let l of listeClients | clientFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                <tr *ngFor="let c of listeClients | clientFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
                     <td>{{i+1}}</td>
-                    <td>{{l.client.nom}}</td>
-                    <td>{{l.client.prenom}}</td>
-                    <td>{{l.client.latitude}}</td>
-                    <td>{{l.commercial.nom}} {{l.commercial.prenom}}</td>
+                    <td>{{c.nom}}</td>
+                    <td>{{c.prenom}}</td>
+                    <td>{{c.latitude}}</td>
+                    <td>{{c.commercial.nom}} {{c.commercial.prenom}}</td>
                 </tr>
 
             </tbody>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClientModel } from 'src/app/essivi/models/client.model';
 import { Commercial_ClientModel } from 'src/app/essivi/models/commercial_client.model';
 import { ClientService } from 'src/app/essivi/Services/client.service';
 
@@ -18,7 +19,7 @@ export class ClientComponent implements OnInit{
 
   searchValue! : string
 
-  listeClients! : Commercial_ClientModel[]
+  listeClients! : ClientModel[]
 
   newAddMarqueFormGroup! : FormGroup
 
@@ -36,6 +37,7 @@ export class ClientComponent implements OnInit{
     this.clientsService.getAllCommercialsClients().subscribe({
       next : (data)=>{
         this.listeClients = data.data
+        console.log(data.data)
       }, error : (err)=>{
         console.log('err '+err.httpMessage)
       }
