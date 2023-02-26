@@ -1,3 +1,5 @@
+import { CommandeComponent } from './essivi/components/Gestion des commandes/commande/commande.component';
+import { LivraisonComponent } from './essivi/components/Gestion des livraisons/livraison/livraison.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TemplateComponent } from './template/template.component';
@@ -37,6 +39,12 @@ const routes: Routes = [
       },
       {
         path: "carte", component : ClientCarteComponent
+      },
+      {
+        path: "livraisons", component : LivraisonComponent
+      },
+      {
+        path: "commandes", component : CommandeComponent
       }
     ]
   }

@@ -1,0 +1,149 @@
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg bg" type="button">LISTE DES LIVRAISONS</button>
+</div>
+
+
+<ng-container *ngIf="listeLivraisons">
+
+    <div class="tableUserChat">
+ 
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form>
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Commercial</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Appréciation</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let l of listeLivraisons | livraisonFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{l.commande.client.nom}} {{l.commande.client.prenom}}</td>
+                    <td>{{l.commercial.nom}} {{l.commercial.prenom}}</td>
+                    <td>{{l.date_heure | date : 'd/MM/yyyy'}}</td>
+                    <td>
+                        <button class="btn btn-danger" *ngIf="l.commande.date_voulu_reception<l.date_heure" >
+                            AVEC RETARD
+                        </button>
+                        <button class="btn btn-success" *ngIf="l.commande.date_voulu_reception>=l.date_heure" >
+                            SANS RETARD
+                        </button>                    
+                    </td>
+                    <td>
+                        <button class="btn btn-info" (click)="onGetDetails(l)"  data-bs-toggle="modal" data-bs-target="#exampleModalDetails">
+                            Détails
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeLivraisons.length"></ngb-pagination>
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="myLivraisonForDeytails" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Livraison | Détails</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <h4>Informations du client</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prenom</th>
+                            <th scope="col">Quartier</th>
+                            <th scope="col">Télééphone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{myLivraisonForDeytails.commande.client.nom}}</td>
+                            <td>{{myLivraisonForDeytails.commande.client.prenom}}</td>
+                            <td>{{myLivraisonForDeytails.commande.client.quartier}}</td>
+                            <td>{{myLivraisonForDeytails.commande.client.numTel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Détails de la commande</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Marque</th>
+                            <th scope="col">Libellé produit</th>
+                            <th scope="col">Prix unit</th>
+                            <th scope="col">Qté achetée</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let d of myLivraisonForDeytails.commande.details" >
+                            <td>{{d.type_vente.marque.libelle_marque}}</td>
+                            <td>{{d.type_vente.libelle_type_vente}}</td>
+                            <td>{{d.type_vente.prix_unit}}</td>
+                            <td>{{d.qte}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>Informations du livreur</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prenom</th>
+                            <th scope="col">Quartier</th>
+                            <th scope="col">Tél</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{myLivraisonForDeytails.commercial.nom}}</td>
+                            <td>{{myLivraisonForDeytails.commercial.prenom}}</td>
+                            <td>{{myLivraisonForDeytails.commercial.quartier}}</td>
+                            <td>{{myLivraisonForDeytails.commercial.numTel}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

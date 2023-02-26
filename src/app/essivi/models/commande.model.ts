@@ -1,3 +1,4 @@
+import { Detail_CdeModel } from './detail_Cde.model';
 import { ClientModel } from "./client.model"
 import { LivraisonModel } from "./livraison.model"
 
@@ -7,4 +8,5 @@ export interface CommandeModel{
   date_voulu_reception : Date
   client : ClientModel
   livraisons : LivraisonModel[]
+  details : Detail_CdeModel[]
 }

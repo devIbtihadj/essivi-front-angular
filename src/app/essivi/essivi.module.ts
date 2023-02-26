@@ -16,6 +16,10 @@ import { VehiculeFilterPipe } from './components/Gestion des vehicules/filters/v
 import { ClientComponent } from './components/Gestion des clients/client/client.component';
 import { ClientFilterPipe } from './components/Gestion des clients/filters/client-filter.pipe';
 import { ClientCarteComponent } from './components/cartes/client-carte/client-carte.component';
+import { LivraisonComponent } from './components/Gestion des livraisons/livraison/livraison.component';
+import { LivraisonFilterPipe } from './components/Gestion des livraisons/filters/livraison-filter.pipe';
+import { CommandeComponent } from './components/Gestion des commandes/commande/commande.component';
+import { CommandeFilterPipe } from './components/Gestion des commandes/filters/commande-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { ClientCarteComponent } from './components/cartes/client-carte/client-ca
     VehiculeFilterPipe,
     ClientComponent,
     ClientFilterPipe,
-    ClientCarteComponent
+    ClientCarteComponent,
+    LivraisonComponent,
+    LivraisonFilterPipe,
+    CommandeComponent,
+    CommandeFilterPipe
   ],
   imports: [
     BrowserAnimationsModule,

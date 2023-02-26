@@ -27,5 +27,13 @@ export class CommandeService {
     return this.http.post<any>(environment.backendHost+"payement/idCml/"+idCommercial+"/idLivr+/"+idLivraison, payement)
   }
 
+  public getAllLivraisons() : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"commande/delivered/all")
+  }
+
+  public getAllCommandesNotDeivered() : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"commande/notdelivered/all")
+  }
+
 
 }
