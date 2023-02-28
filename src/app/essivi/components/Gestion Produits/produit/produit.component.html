@@ -1,1 +1,219 @@
-<p>produit works!</p>
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg bg" type="button">LISTE DES PRODUITS</button>
+</div>
+
+
+<ng-container *ngIf="listeTypeVentes">
+
+    <div class="tableUserChat">
+
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form>
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-3 col-sm-auto">
+                <button class="btn btn-success" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModalAddMarque" (click)="onInitAddFG()">Ajouter un produit</button>
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Libelle</th>
+                    <th scope="col">Prix unit</th>
+                    <th scope="col">Qte comp.</th>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Détails</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let t of listeTypeVentes | produitFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{t.libelle_type_vente}}</td>
+                    <td>{{t.prix_unit}}</td>
+                    <td>{{t.qte_composition}}</td> 
+                    <td>{{t.marque.libelle_marque}}</td>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-success " style="margin-left: 15px;" (click)="onGetDetails(t)" data-bs-toggle="modal" data-bs-target="#detailsTypeVente"><i class="bi bi-check"></i></button>
+                        </div>
+                    </td>
+
+
+                    <td style="display: flex;">
+                        <div class="d-flex " style="justify-content : space-evenly;">
+                            <div>
+                                <button type="button" class="btn btn-info" (click)="onGetDataToUpdate(t)" data-bs-toggle="modal" data-bs-target="#exampleModalModifyMarque">
+                                  <i class="bi bi-pencil-square" data-bs-toggle="modal"  data-bs-target="#exampleModalModifyMarque"></i></button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger " style="margin-left: 15px;" (click)="onGetDelete(t)"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeTypeVentes.length"></ngb-pagination>
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalAddMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Produit | Ajout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddTypeVenteFormGroup">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom du produit:</label>
+                        <input type="text" formControlName="libelle_type_vente" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Prix unit:</label>
+                        <input type="number" formControlName="prix_unit" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Qté composition:</label>
+                        <input type="number" formControlName="qte_composition" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Marque:</label>
+                        <select class="form-control" formControlName="marque">
+                            <option>--Votre choix--</option>
+                            <option *ngFor="let m of listeMarques" value="{{m.id}}">{{m.libelle_marque}} </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddTypeVenteFormGroup.valid" (click)="onSaveTypeVente()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalModifyMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Produit | Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="newAddTypeVenteFormGroup">
+
+                    <input type="number" formControlName="id" class="form-control" id="recipient-name" type="hidden">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Nom du produit:</label>
+                        <input type="text" formControlName="libelle_type_vente" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Prix unit:</label>
+                        <input type="number" formControlName="prix_unit" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Qté composition:</label>
+                        <input type="number" formControlName="qte_composition" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-control" formControlName="marque">
+                            <option>--Votre choix--</option>
+                            <option *ngFor="let m of listeMarques" value="{{m.id}}">{{m.libelle_marque}} </option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddTypeVenteFormGroup.valid" (click)="onSaveModify()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="detailsTypeVente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Produit | Détails</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div class="wrapper">
+                    <div class="product-img">
+                      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+                    </div>
+                    <div class="product-info">
+                      <div class="product-text">
+                        <h1>Harvest Vase</h1>
+                        <h2>by studio and friends</h2>
+                        <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
+                      </div>
+                      <div class="product-price-btn">
+                        <p><span>78</span>$</p>
+                        <button type="button">buy now</button>
+                      </div>
+                    </div>
+                  </div>
+
+
+                
+          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddTypeVenteFormGroup.valid" (click)="onSaveModify()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

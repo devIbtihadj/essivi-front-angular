@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/assets/environments/environment.prod';
 import { Observable } from 'rxjs';
 import { MarqueModel } from '../models/marque.model';
-import { Type_venteMoel } from '../models/type_vente.model';
+import { Type_venteModel } from '../models/type_vente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class ProduitService {
     return this.http.delete<any>(environment.backendHost+"/marque/delete/"+id)
   }
 
-  public creerType_vente(type_vente : Type_venteMoel, idMarque : number) : Observable<any>{
+  public creerType_vente(type_vente : Type_venteModel, idMarque : number) : Observable<any>{
     return this.http.post<any>(environment.backendHost+"type_vente/creer/"+idMarque, type_vente)
   }
 
@@ -39,6 +39,9 @@ export class ProduitService {
   }
 
 
+  public getAllTypeVente() : Observable<any>{
+    return this.http.get<any>(environment.backendHost+"type_vente/get/all")
+  }
 
 
 
