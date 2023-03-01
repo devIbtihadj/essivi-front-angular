@@ -30,7 +30,7 @@ export class ProduitService {
     return this.http.delete<any>(environment.backendHost+"/marque/delete/"+id)
   }
 
-  public creerType_vente(type_vente : Type_venteModel, idMarque : number) : Observable<any>{
+  public creerType_vente(type_vente : FormData, idMarque : number) : Observable<any>{
     return this.http.post<any>(environment.backendHost+"type_vente/creer/"+idMarque, type_vente)
   }
 

@@ -116,6 +116,10 @@
                             <option *ngFor="let m of listeMarques" value="{{m.id}}">{{m.libelle_marque}} </option>
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Image:</label>
+                        <input (change)="onSelectedFile($event)" type="file" formControlName="image" class="form-control" id="recipient-name">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -176,7 +180,7 @@
 
 
 
-<div class="modal fade" id="detailsTypeVente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="detailsTypeVente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="typeForDetail" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -185,22 +189,23 @@
             </div>
             <div class="modal-body">
 
+                <!--
+                <img src="http://localhost:5000/static/images_types_ventes/Capture_decran_1.png" height="420" width="327">
+                 -->   
 
-
+                
                 <div class="wrapper">
                     <div class="product-img">
-                      <img src="http://bit.ly/2tMBBTd" height="420" width="327">
-                    </div>
+                      <img src="{{backendStaticFolder}}/{{typeForDetail.image}}" height="420" width="327">
+                      </div>
                     <div class="product-info">
                       <div class="product-text">
-                        <h1>Harvest Vase</h1>
-                        <h2>by studio and friends</h2>
-                        <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
-                      </div>
-                      <div class="product-price-btn">
-                        <p><span>78</span>$</p>
-                        <button type="button">buy now</button>
-                      </div>
+                        <h1>{{typeForDetail.libelle_type_vente}} ({{typeForDetail.qte_composition}})</h1>
+                        <h2>By ESSIVI SARL</h2>  
+                        <p><span>{{typeForDetail.prix_unit}}</span>FCFA</p>  
+                        <p><button class="btn btn-info">{{typeForDetail.marque.libelle_marque}}</button>  </p>
+                    </div>
+                
                     </div>
                   </div>
 
