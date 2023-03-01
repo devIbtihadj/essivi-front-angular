@@ -43,6 +43,9 @@ export class ProduitService {
     return this.http.get<any>(environment.backendHost+"type_vente/get/all")
   }
 
+  public getTypeVente(id : number): Observable<any>{
+    return this.http.get<any>(environment.backendHost+"type_vente/get/"+id)
+  }
 
 
 

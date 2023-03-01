@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-3">
+
+
+
+        <div class="card card-shadow mb-4">
+            <div class="card-header border-0">
+                <div class="custom-title-wrap bar-warning">
+                    <div class="custom-title">Ajoutez un détail de commande</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formAddLigneVente">
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Marque:</label>
+                        <select class="form-control " formControlName="marque" (change)="handleMarqueAdd()">
+                            <option value = "">--Votre choix--</option>
+                            <option *ngFor="let m of listeMarque " value="{{m.id}}" > {{m.libelle_marque}}  </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Article:</label>
+                        <select class="form-control " formControlName="type_vente">
+                            <option value = "">--Votre choix--</option>
+                            <option *ngFor="let type of listeTypeVente" value="{{type.id}}" > Nom : {{type.libelle_type_vente}} Qte : {{type.qte_composition}} Prix : {{type.prix_unit}} </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Qte:</label>
+                        <input type="number" class="form-control" formControlName="qte" min="1">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center">
+                            <button [disabled]="!this.formAddLigneVente.valid" (click)="validateAddLigneVente()" class="btn btn-primary">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-9">
+
+        <table class="table table-striped" *ngIf="allLigneCmdeClients != undefined">
+            <thead>
+                <tr>
+                    <th scope="col">Marque</th>
+                    <th scope="col">Détail produit</th>
+                    <th scope="col">Qté de vente</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ligneCmde of allLigneCmdeClients | slice: (page-1) * pageSize : page * pageSize let i = index">
+
+                    <td>{{ligneCmde?.type_vente?.marque?.libelle_marque}}</td>
+                    <td>Nom :{{ligneCmde?.type_vente?.libelle_type_vente}} Qté: {{ligneCmde?.type_vente?.qte_composition}} Prix :{{ligneCmde?.type_vente?.prix_unit}}</td>
+                    <!--<td>Nom : {{ligneCmde.frs_typeAchat.id}}</td>-->
+                    <td>{{ligneCmde?.qte}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" (click)="onGetDataToUpdate(ligneCmde)">
+                            <i class="bi bi-pencil-square" data-bs-toggle="modal"  data-bs-target="#exampleModalModifLigneCmde"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger " style="margin-left: 10px;" (click)="onGetDelete(ligneCmde)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+
+
+                    <!-- (click)="onGetForm(note.inscription.id)" -->
+                </tr>
+                <div>
+                    <button type="button" class="btn btn-primary">Total : {{total}}</button>
+                </div>
+            </tbody>
+        </table>
+        <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="allLigneCmdeClients.length"></ngb-pagination>
+
+
+        <button *ngIf="this.allLigneCmdeClients.length > 0" type="button" class="btn btn-success" (click)="validerVente()">Valider la commande fournisseur</button>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalModifLigneCmde" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modifier un détail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+
+                <form [formGroup]="formModifLigneVente">
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Marque:</label>
+                        <select class="form-control " formControlName="marque" (change)="handleMarqueModif()">
+                            <option value = "">--Votre choix--</option>
+                            <option *ngFor="let m of listeMarque " value="{{m.id}}" > {{m.libelle_marque}}  </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Produit:</label>
+                        <select class="form-control " formControlName="type_vente">
+                            <option value = "">--Votre choix--</option>
+                            <option *ngFor="let type of listeTypeVente" value="{{type.id}}" > Nom : {{type.libelle_type_vente}} Qte : {{type.qte_composition}} Prix : {{type.prix_unit}} </option>
+                        </select>
+                    </div>
+
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Qte:</label>
+                        <input type="number" class="form-control" formControlName="qte" min="1">
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center">
+                            <button data-bs-dismiss="modal" [disabled]="!this.formModifLigneVente.valid" (click)="validateModifLigneVente()" class="btn btn-primary" data-bs-dismiss="modal">Valider</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -21,6 +21,7 @@ import { LivraisonFilterPipe } from './components/Gestion des livraisons/filters
 import { CommandeComponent } from './components/Gestion des commandes/commande/commande.component';
 import { CommandeFilterPipe } from './components/Gestion des commandes/filters/commande-filter.pipe';
 import { ProduitFilterPipe } from './components/Gestion Produits/filters/produit-filter.pipe';
+import { AddCommandeComponent } from './components/Gestion des commandes/add-commande/add-commande.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProduitFilterPipe } from './components/Gestion Produits/filters/produit
     LivraisonFilterPipe,
     CommandeComponent,
     CommandeFilterPipe,
-    ProduitFilterPipe
+    ProduitFilterPipe,
+    AddCommandeComponent
   ],
   imports: [
     BrowserAnimationsModule,

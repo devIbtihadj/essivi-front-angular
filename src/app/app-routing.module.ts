@@ -1,3 +1,4 @@
+import { AddCommandeComponent } from './essivi/components/Gestion des commandes/add-commande/add-commande.component';
 import { ProduitComponent } from './essivi/components/Gestion Produits/produit/produit.component';
 import { CommandeComponent } from './essivi/components/Gestion des commandes/commande/commande.component';
 import { LivraisonComponent } from './essivi/components/Gestion des livraisons/livraison/livraison.component';
@@ -49,6 +50,9 @@ const routes: Routes = [
       },
       {
         path: "produits", component : ProduitComponent
+      },
+      {
+        path: "add-commande", component : AddCommandeComponent
       }
     ]
   }

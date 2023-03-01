@@ -7,3 +7,10 @@ export interface Detail_CdeModel{
   commande : CommandeModel
   type_vente : Type_venteModel
 }
+
+
+export class ModelLigneCdeClient{
+  id! : number
+  qte! : number
+  type_vente! : Type_venteModel
+}
