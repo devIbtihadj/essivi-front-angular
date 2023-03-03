@@ -13,4 +13,5 @@ export class ModelLigneCdeClient{
   id! : number
   qte! : number
   type_vente! : Type_venteModel
+  type_vente_id! : number
 }

@@ -1,3 +1,4 @@
+import { CommandeModelClass } from './../models/commande.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,8 +16,9 @@ export class CommandeService {
 
 
 
-  public creerCommande(idClient : number, commande : CommandeModel) : Observable<any>{
-    return this.http.post<any>(environment.backendHost+"commande/creer/"+idClient, commande)
+  public creerCommande(commande : CommandeModelClass) : Observable<any>{
+    console.log("commande before http :"+ JSON.stringify(commande))
+    return this.http.post<any>(environment.backendHost+"commande/creer", commande)
   }
 
   public creerLivraison(idCommercial : number, idCommande : number, livraison : LivraisonModel ) : Observable<any>{

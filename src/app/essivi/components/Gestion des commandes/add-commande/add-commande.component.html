@@ -2,6 +2,36 @@
     <div class="col-3">
 
 
+        <div class="card card-shadow mb-4">
+            <div class="card-header border-0">
+                <div class="custom-title-wrap bar-warning">
+                    <div class="custom-title">Client</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formChooseClt">
+
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Client</label>
+                        <select class="form-control " formControlName="client_id">
+                            <option value = "">--Votre choix--</option>
+                            <option *ngFor="let cl of listeClts " value="{{cl.id}}" > {{cl.nom}} {{cl.prenom}}  </option>
+                        </select>
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="message-text " class="col-form-label">Date de rececption:</label>
+                        <input type="date" class="form-control" formControlName="date_voulu_reception" >
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-center">
+                            <button [disabled]="!this.formChooseClt.valid" (click)="validateClt()" class="btn btn-primary">Valider</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
         <div class="card card-shadow mb-4">
             <div class="card-header border-0">
@@ -80,7 +110,7 @@
         <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="allLigneCmdeClients.length"></ngb-pagination>
 
 
-        <button *ngIf="this.allLigneCmdeClients.length > 0" type="button" class="btn btn-success" (click)="validerVente()">Valider la commande fournisseur</button>
+        <button *ngIf="this.allLigneCmdeClients.length > 0" type="button" class="btn btn-success" (click)="validerVente()">Valider la commande du client</button>
 
     </div>
 </div>
