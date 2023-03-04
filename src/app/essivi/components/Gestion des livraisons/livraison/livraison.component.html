@@ -1,5 +1,5 @@
 <div class="d-grid gap-2 mt-3 mb-3">
-    <button class="btn btn-lg bg" type="button">LISTE DES LIVRAISONS</button>
+    <button class="btn btn-lg monBtn" type="button">LISTE DES LIVRAISONS</button>
 </div>
 
 
@@ -103,6 +103,7 @@
                         <tr>
                             <th scope="col">Marque</th>
                             <th scope="col">Libellé produit</th>
+                            <th scope="col">Qte d'eau</th>
                             <th scope="col">Prix unit</th>
                             <th scope="col">Qté achetée</th>
                         </tr>
@@ -111,6 +112,7 @@
                         <tr *ngFor="let d of myLivraisonForDeytails.commande.details" >
                             <td>{{d.type_vente.marque.libelle_marque}}</td>
                             <td>{{d.type_vente.libelle_type_vente}}</td>
+                            <td>{{d.type_vente.qte_contenu_unitaire}} l</td>
                             <td>{{d.type_vente.prix_unit}}</td>
                             <td>{{d.qte}}</td>
                         </tr>

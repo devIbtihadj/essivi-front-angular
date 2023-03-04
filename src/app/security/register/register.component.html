@@ -8,7 +8,7 @@
                     <div class="d-flex justify-content-center py-4">
                         <a href="index.html" class="logo d-flex align-items-center w-auto">
                             <img src="assets/img/logo.png" alt="">
-                            <span class="d-none d-lg-block">NiceAdmin</span>
+                            <span class="d-none d-lg-block">ESSVI SARL</span>
                         </a>
                     </div>
                     <!-- End Logo -->
@@ -19,8 +19,8 @@
                         <div class="card-body">
 
                             <div class="pt-4 pb-2">
-                                <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                <p class="text-center small">Enter your personal details to create account</p>
+                                <h5 class="card-title text-center pb-0 fs-4">Creer un compte</h5>
+                                <p class="text-center small">Création de compte d'un commercial</p>
                             </div>
 
                             <form class="row g-3 needs-validation" novalidate [formGroup]="registerFormGroup">
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="yourPassword" class="form-label">Contactnom P à prevenir</label>
+                                    <label for="yourPassword" class="form-label">Contact P à prevenir</label>
                                     <input type="number" name="password" class="form-control" id="yourPassword" required formControlName="contactPersonnePrevenir">
                                     <div class="invalid-feedback">Please enter your password!</div>
                                 </div>
@@ -97,10 +97,7 @@
 
 
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100" type="submit" (click)="onSaveCommercial()">Create Account</button>
-                                </div>
-                                <div class="col-12">
-                                    <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                                    <button class="btn btn-primary w-100" type="submit" (click)="onSaveCommercial()">Valider</button>
                                 </div>
                             </form>
 

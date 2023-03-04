@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/assets/environments/environment.prod';
-import { CommandeModel } from '../models/commande.model';
 import { LivraisonModel } from '../models/livraison.model';
 import { PayementModel } from '../models/payement.model';
 
@@ -36,6 +35,8 @@ export class CommandeService {
   public getAllCommandesNotDeivered() : Observable<any>{
     return this.http.get<any>(environment.backendHost+"commande/notdelivered/all")
   }
+
+  
 
 
 }

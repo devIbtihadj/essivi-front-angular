@@ -1,3 +1,4 @@
+import { CommercialComponent } from './essivi/components/Gestion des commercials/commercial/commercial.component';
 import { AddCommandeComponent } from './essivi/components/Gestion des commandes/add-commande/add-commande.component';
 import { ProduitComponent } from './essivi/components/Gestion Produits/produit/produit.component';
 import { CommandeComponent } from './essivi/components/Gestion des commandes/commande/commande.component';
@@ -23,9 +24,17 @@ const routes: Routes = [
     path: "login", component : LoginComponent
   },
   {
+    path: '',
+    redirectTo: "/dashboard",
+    pathMatch: 'full'
+  },
+  {
     path: "", component: TemplateComponent, children: [
       {
-        path : "dashboard", component : DashboardComponent, canActivate : [SecurityGuard]
+        path : "dashboard", component : DashboardComponent
+      },
+      {
+        path : "add-commande", component : AddCommandeComponent
       },
       {
         path : "marques", component : MarqueComponent
@@ -53,6 +62,9 @@ const routes: Routes = [
       },
       {
         path: "add-commande", component : AddCommandeComponent
+      },
+      {
+        path: "commercials", component : CommercialComponent
       }
     ]
   }

@@ -6,6 +6,10 @@
 * Chronicle Display Roman font was substituted for similar fonts from Google Fonts.
 */
 
+.monBtn{
+  background-color: rgb(99, 129, 219);
+  color: rgb(255, 255, 255);
+}
 body {
     background-color: #fdf1ec;
   }

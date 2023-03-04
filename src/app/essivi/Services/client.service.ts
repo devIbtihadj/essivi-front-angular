@@ -56,7 +56,7 @@ export class ClientService {
   }
 
   public changeCommercialForClient(idCommercial : number, idClient : number) : Observable<any>{
-    return this.http.put<any>(environment.backendHost+"commercial_client/change/idComm/"+idCommercial+"/idCli/"+idClient, null)
+    return this.http.put<any>(environment.backendHost+"client/change/idComm/"+idCommercial+"/idCli/"+idClient, null)
   }
 
 

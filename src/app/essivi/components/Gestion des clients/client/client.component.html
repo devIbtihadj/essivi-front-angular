@@ -1,5 +1,5 @@
 <div class="d-grid gap-2 mt-3 mb-3">
-    <button class="btn btn-lg bg" type="button">LISTE DES MARQUES</button>
+    <button class="btn btn-lg monBtn" type="button">LISTE DES CLIENTS</button>
 </div>
 
 
@@ -33,6 +33,7 @@
                     <th scope="col">Prenom </th>
                     <th scope="col">Latitude</th>
                     <th scope="col">Commercial</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,9 @@
                     <td>{{c.prenom}}</td>
                     <td>{{c.latitude}}</td>
                     <td>{{c.commercial.nom}} {{c.commercial.prenom}}</td>
+                    <td>
+                        <button (click)="onGetModal(c)" class="btn btn-success" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModalModifyMarque" >Changer de commercial</button>
+                    </td>
                 </tr>
 
             </tbody>
@@ -53,3 +57,39 @@
 
 
 </ng-container>
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalModifyMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Commercial | Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="newCommercialFormGroup">
+                    <input type="hidden" formControlName="client">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Commercial:</label>
+                    <select class="form-control" formControlName="commercial">
+                        <option>--Votre choix--</option>
+                        <option *ngFor="let c of listeCommercials" value="{{c.id}}">{{c.nom}} {{c.prenom}} </option>
+                    </select>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newCommercialFormGroup.valid" (click)="onSaveNewCommercial()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>

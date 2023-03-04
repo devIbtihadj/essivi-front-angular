@@ -2,17 +2,24 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="index.html">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-house-door"></i><span>Dashboard</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a routerLink="dashboard">
+                        <i class="bi bi-circle"></i>
+                        <span>Afficher</span></a>
+                </li>
+            </ul>
         </li>
+
         <!-- End Dashboard Nav -->
 
         <!-- Gestion des clients -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Gestion des clients</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Gestion des clients</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -26,7 +33,7 @@
         <!-- Gestion des Livraisons -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Gestion des livraisons</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-truck"></i><span>Gestion des livraisons</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -47,7 +54,7 @@
         <!-- Gestion des produits -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Gestion des produits</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-trash2"></i><span>Gestion des produits</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -65,7 +72,7 @@
         <!-- Gestion des commandes -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Gestion des commandes</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-cart-check"></i><span>Gestion des commandes</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -78,24 +85,59 @@
                         <i class="bi bi-circle"></i>
                         <span>Liste</span></a>
                 </li>
+                <li>
+                    <a routerLink="add-commande">
+                        <i class="bi bi-circle"></i>
+                        <span>Ajouter</span></a>
+                </li>
             </ul>
         </li>
 
         <!-- Gestion des commerciales -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Gestion des commerciales</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Gestion des commerciales</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-elements.html">
-                        <i class="bi bi-circle"></i><span>Liste</span>
-                    </a>
+                    <a routerLink="commercials">
+                        <i class="bi bi-circle"></i>
+                        <span>Liste</span></a>
+                </li>
+                <li>
+                    <a routerLink="register/commercial">
+                        <i class="bi bi-circle"></i>
+                        <span>Ajouter</span></a>
                 </li>
             </ul>
         </li>
 
-        <!-- Gestion des vehicules -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-pin-map"></i><span>Carte des clients</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a routerLink="carte">
+                        <i class="bi bi-circle"></i>
+                        <span>Afficher</span></a>
+                </li>
+            </ul>
+        </li>
+
+       
+
+
+
+
+
+
+
+
+<!--
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-journal-text"></i><span>Gestion véhicules</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -113,7 +155,6 @@
                 </li>
             </ul>
         </li>
-        <!-- End Forms Nav -->
 
 
 
@@ -127,7 +168,6 @@
                 <span>Profile</span>
             </a>
         </li>
-        <!-- End Profile Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
@@ -135,7 +175,6 @@
                 <span>F.A.Q</span>
             </a>
         </li>
-        <!-- End F.A.Q Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-contact.html">
@@ -143,7 +182,6 @@
                 <span>Contact</span>
             </a>
         </li>
-        <!-- End Contact Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-register.html">
@@ -151,7 +189,6 @@
                 <span>Register</span>
             </a>
         </li>
-        <!-- End Register Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-login.html">
@@ -159,15 +196,12 @@
                 <span>Login</span>
             </a>
         </li>
-        <!-- End Login Page Nav -->
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-error-404.html">
                 <i class="bi bi-dash-circle"></i>
                 <span>Error 404</span>
             </a>
         </li>
-        <!-- End Error 404 Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-blank.html">
@@ -175,7 +209,6 @@
                 <span>Blank</span>
             </a>
         </li>
-        <!-- End Blank Page Nav -->
-
+-->
     </ul>
 </aside>

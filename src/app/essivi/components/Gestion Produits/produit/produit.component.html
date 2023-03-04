@@ -1,5 +1,5 @@
 <div class="d-grid gap-2 mt-3 mb-3">
-    <button class="btn btn-lg bg" type="button">LISTE DES PRODUITS</button>
+    <button class="btn btn-lg monBtn" type="button">LISTE DES PRODUITS</button>
 </div>
 
 
@@ -43,7 +43,7 @@
                 <tr *ngFor="let t of listeTypeVentes | produitFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
                     <td>{{i+1}}</td>
                     <td>{{t.libelle_type_vente}}</td>
-                    <td>{{t.qte_contenu_unitaire}}</td>
+                    <td>{{t.qte_contenu_unitaire}} litre</td>
                     <td>{{t.prix_unit}}</td>
                     <td>{{t.qte_composition}}</td> 
                     <td>{{t.marque.libelle_marque}}</td>

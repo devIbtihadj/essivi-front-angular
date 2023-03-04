@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecurityService } from '../security.service';
 
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit{
   onSaveCommercial(){
     this.securityService.saveCommercial(this.registerFormGroup.value).subscribe({
       next : (data)=>{
-        alert('Saved')
+        this.router.navigateByUrl('/commercials')
         this.registerFormGroup.reset()
       }, error : (err)=>{
         alert(err.message+" : my error")

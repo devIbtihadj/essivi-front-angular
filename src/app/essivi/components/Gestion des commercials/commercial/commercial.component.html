@@ -1,0 +1,159 @@
+<div class="d-grid gap-2 mt-3 mb-3">
+    <button class="btn btn-lg monBtn" type="button">LISTE DES COMMERCIALS</button>
+</div>
+
+
+<ng-container *ngIf="listeCommercials">
+
+    <div class="tableUserChat">
+
+        <div class="d-flex" style="display: flex; justify-content: space-between;">
+
+            <form>
+                <div class="mb-3 row">
+                    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Rechercher:</label>
+                    <div class="col-xs-3 col-sm-auto">
+                        <input id="table-filtering-search" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" class="form-control" type="text">
+                    </div>
+                </div>
+            </form>
+
+            <div class="col-xs-3 col-sm-auto">
+                <button class="btn btn-success" style="margin-left: 5px;" data-bs-toggle="modal" data-bs-target="#exampleModalAddMarque" (click)="addCommercial()">Ajouter un commercial</button>
+            </div>
+        </div>
+
+
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Numéro Tel.</th>
+                    <th scope="col">Num Id.</th>
+                    <th scope="col">Quartier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of listeCommercials | commercialFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
+                    <td>{{i+1}}</td>
+                    <td>{{c.nom}}</td>
+                    <td>{{c.prenom}}</td>
+                    <td>{{c.numTel}}</td>
+                    <td>{{c.numIdentification}}</td>
+                    <td>{{c.quartier}}</td>
+                    <td style="display: flex;">
+                        <div class="d-flex " style="justify-content : space-evenly;">
+                            <div>
+                                <button type="button" class="btn btn-info" (click)="onGetDataToUpdate(c)" data-bs-toggle="modal" data-bs-target="#exampleModalModifyMarque">
+                                  <i class="bi bi-pencil-square" data-bs-toggle="modal"  data-bs-target="#exampleModalModifyMarque"></i></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listeCommercials.length"></ngb-pagination>
+
+
+
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModalModifyMarque" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Commercial | Modification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="card-body">
+
+                
+                
+
+                <form class="row g-3 needs-validation" novalidate [formGroup]="newAddCommercialFormGroup">
+                    <div class="col-12">
+                        <label for="yourName" class="form-label">Nom</label>
+                        <input type="text" name="lastname" class="form-control" id="yourName" required formControlName="nom">
+                        <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourName" class="form-label">Prenom</label>
+                        <input type="text" name="firstname" class="form-control" id="yourName" required formControlName="prenom">
+                        <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourEmail" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="yourEmail" required formControlName="email">
+                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Num Tel</label>
+                        <input type="number" name="tel" class="form-control" id="yourPassword" required formControlName="numTel">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Quartier</label>
+                        <input type="text" name="quartier" class="form-control" id="yourPassword" required formControlName="quartier">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+
+
+
+                    <div class="col-12">
+                        <label for="yourName" class="form-label">Nom P à prevenir</label>
+                        <input type="text" name="name" class="form-control" id="yourName" required formControlName="nomPersonnePrevenir">
+                        <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourName" class="form-label">Prenom P à prevenir</label>
+                        <input type="text" name="name" class="form-control" id="yourName" required formControlName="prenomPersonnePrevenir">
+                        <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Contactnom P à prevenir</label>
+                        <input type="number" name="password" class="form-control" id="yourPassword" required formControlName="contactPersonnePrevenir">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourPassword" class="form-label">Type d'utilisateur</label>
+                        <input type="text" name="password" class="form-control" id="yourPassword" required formControlName="typeUser">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" [disabled]="!newAddCommercialFormGroup.valid" (click)="onSaveModify()" data-bs-dismiss="modal" class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>
