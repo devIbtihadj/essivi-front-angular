@@ -31,6 +31,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Libelle</th>
+                    <th scope="col">Qte d'eau</th>
                     <th scope="col">Prix unit</th>
                     <th scope="col">Qte comp.</th>
                     <th scope="col">Marque</th>
@@ -42,6 +43,7 @@
                 <tr *ngFor="let t of listeTypeVentes | produitFilter:searchValue | slice: (page-1) * pageSize : page * pageSize ; index as i ">
                     <td>{{i+1}}</td>
                     <td>{{t.libelle_type_vente}}</td>
+                    <td>{{t.qte_contenu_unitaire}}</td>
                     <td>{{t.prix_unit}}</td>
                     <td>{{t.qte_composition}}</td> 
                     <td>{{t.marque.libelle_marque}}</td>
@@ -110,6 +112,10 @@
                         <input type="number" formControlName="qte_composition" class="form-control" id="recipient-name">
                     </div>
                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Qté d'eau: (litres)</label>
+                        <input type="number" formControlName="qte_contenu_unitaire" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Marque:</label>
                         <select class="form-control" formControlName="marque">
                             <option>--Votre choix--</option>
@@ -162,6 +168,10 @@
                         <input type="number" formControlName="qte_composition" class="form-control" id="recipient-name">
                     </div>
                     <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Qté d'eau: (litres)</label>
+                        <input type="number" formControlName="qte_contenu_unitaire" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="mb-3">
                         <select class="form-control" formControlName="marque">
                             <option>--Votre choix--</option>
                             <option *ngFor="let m of listeMarques" value="{{m.id}}">{{m.libelle_marque}} </option>
@@ -200,7 +210,7 @@
                       </div>
                     <div class="product-info">
                       <div class="product-text">
-                        <h1>{{typeForDetail.libelle_type_vente}} ({{typeForDetail.qte_composition}})</h1>
+                        <h1>{{typeForDetail.libelle_type_vente}} | {{typeForDetail.qte_contenu_unitaire}} ({{typeForDetail.qte_composition}})</h1>
                         <h2>By ESSIVI SARL</h2>  
                         <p><span>{{typeForDetail.prix_unit}}</span>FCFA</p>  
                         <p><button class="btn btn-info">{{typeForDetail.marque.libelle_marque}}</button>  </p>

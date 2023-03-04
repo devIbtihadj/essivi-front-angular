@@ -87,6 +87,7 @@ export class ProduitComponent implements OnInit{
     formData.set("id", this.newAddTypeVenteFormGroup.controls['id'].value)
     formData.set("libelle_type_vente", this.newAddTypeVenteFormGroup.controls['libelle_type_vente'].value)
     formData.set("prix_unit", this.newAddTypeVenteFormGroup.controls['prix_unit'].value)
+    formData.set("qte_contenu_unitaire", this.newAddTypeVenteFormGroup.controls['qte_contenu_unitaire'].value)
     formData.set("qte_composition", this.newAddTypeVenteFormGroup.controls['qte_composition'].value)
     formData.set("image", this.file)
     this.typeVenteService.creerType_vente(formData, this.newAddTypeVenteFormGroup.get('marque')?.value).subscribe({
@@ -102,7 +103,8 @@ export class ProduitComponent implements OnInit{
       prix_unit : this.fb.control(null),
       qte_composition : this.fb.control(null),
       marque : this.fb.control(null),
-      image : this.fb.control(null)
+      image : this.fb.control(null),
+      qte_contenu_unitaire : this.fb.control(null)
     })
   }
   

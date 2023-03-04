@@ -6,6 +6,7 @@ export interface Type_venteModel{
   libelle_type_vente : string
   prix_unit : number
   image : string
+  qte_contenu_unitaire : number
   qte_composition : number
   marque : MarqueModel
 }
